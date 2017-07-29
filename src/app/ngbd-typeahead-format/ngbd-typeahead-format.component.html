@@ -1,0 +1,35 @@
+<label for="typeahead-format">Search for a Product:</label>
+
+<input required id="typeahead-format" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter" /><span><button type="submit" class="btn btn-outline-primary " (click)="add()">Add</button></span>
+<hr>  
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product Code</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>GST</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor='let product of billingproducts; let i=index'>
+      <th scope="row">{{product.code}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.gst}}</td>
+      <td><input type="number" [(ngModel)]="product.quantity" (ngModelChange)='valuechanged(i)' class='quantity'></td>
+      <td>{{product.total}}</td>
+    </tr>
+    <tr  *ngIf='billingproducts.length'>
+      <th scope="row">Total</th>
+      <td> </td>
+      <td></td>
+      <td> </td>
+      <td> </td>
+      <td>{{totalamount}}</td>
+    </tr>
+  </tbody>
+</table>

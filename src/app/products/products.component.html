@@ -1,0 +1,83 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">New Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+     <div class="form-group">
+    <label for="exampleInputEmail1">Product Code</label>
+    <input type="text" class="form-control" [(ngModel)]='newdata.code'  placeholder="Product Code">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product Name</label>
+    <input type="text" class="form-control" [(ngModel)]='newdata.name'  placeholder="Product Name">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product Price</label>
+    <input type="number" class="form-control" [(ngModel)]='newdata.price'  placeholder="Product Price">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product GST</label>
+    <input type="number" class="form-control" [(ngModel)]='newdata.gst'  placeholder="Product GST">
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="addnew();c()">Add new</button>
+  </div>
+</ng-template>
+<div class='data-content'>
+<button class="btn btn-lg btn-outline-primary addnew" (click)="open(content)">Add new Product</button>
+<div>
+  <!--Edit modal-->
+  <ng-template #content1 let-cl="close" let-dl="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dl('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+     <div class="form-group">
+    <label for="exampleInputEmail1">Product Code</label>
+    <input type="text" class="form-control" [(ngModel)]='newdata.code'  placeholder="Product Code">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product Name</label>
+    <input type="text" class="form-control" [(ngModel)]='newdata.name'  placeholder="Product Name">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product Price</label>
+    <input type="number" class="form-control" [(ngModel)]='newdata.price'  placeholder="Product Price">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Product GST</label>
+    <input type="number" class="form-control" [(ngModel)]='newdata.gst'  placeholder="Product GST">
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="updatedata();cl()">update</button>
+  </div>
+</ng-template>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product Code</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>GST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style='cursor: pointer;' (click)='edit(i);open(content1)' *ngFor='let product of products; let i=index'>
+      <th scope="row">{{product.code}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.gst}}%</td>
+      <button class="btn  btn-primary " (click)="delete(i)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
